@@ -1,4 +1,5 @@
 interface BackupFile {
+    id: string;
     filepath: string;
 }
 

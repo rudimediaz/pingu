@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { promisify } from "util";
 import { access, readdir } from "fs";
-import { registerAll } from "./Backup";
+import { createBackupFile, checkMeta, shouldDelete } from "./Backup";
 
 export enum AccStatus {
     INIT = 0,
@@ -24,7 +24,26 @@ export const getBackups = (target: Directory): Promise<BackupDirectory> =>
     promisify(readdir)(target.rootPath)
         .then(files =>
             Object.assign<Directory, any>(target, {
-                backups: registerAll(files, target.rootPath)
+                backups: createBackupFile(target.rootPath, files)
             })
         )
         .catch(() => ({ ...target, backups: [] }));
+//
+export const getMeta = (target: BackupDirectory): Promise<BackupDirectory> =>
+    Promise.all(target.backups.map(checkMeta))
+        .then(updated => ({
+            ...target,
+            backups: updated
+        }))
+        .catch(() => target);
+
+//
+export const cleanedJunk = (
+    target: BackupDirectory
+): Promise<BackupDirectory> =>
+    Promise.all(target.backups.map(shouldDelete))
+        .then(updated => ({
+            ...target,
+            backups: updated.filter(update => update.isDeleted === false)
+        }))
+        .catch(() => target);

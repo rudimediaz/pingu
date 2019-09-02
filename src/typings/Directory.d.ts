@@ -4,7 +4,7 @@ interface Directory {
 }
 
 interface BackupDirectory extends Directory {
-    backups: BackupFile[];
+    backups: BackupFileDetails[];
 }
 
 interface TransportDirectory extends Directory {
