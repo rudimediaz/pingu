@@ -1,30 +1,48 @@
 {
-  "name": "pingu",
-  "version": "1.0.0",
-  "description": "",
-  "main": "out/main/main.js",
-  "scripts": {
-    "start": "electron .",
-    "build": "tsc"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/lodash": "^4.14.138",
-    "@types/node": "^12.7.3",
-    "@types/ramda": "^0.26.21",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
-    "@types/uniqid": "^4.1.3",
-    "electron": "^5.0.10",
-    "typescript": "^3.6.2"
-  },
-  "dependencies": {
-    "lodash": "^4.17.15",
-    "ramda": "^0.26.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "uniqid": "^5.0.3"
-  }
+	"name": "pingu",
+	"version": "1.0.2",
+	"description": "backup cleaner and transporter",
+	"main": "out/main/main.js",
+	"scripts": {
+		"start": "electron .",
+		"build": "tsc",
+		"dist": "electron-builder build --dir --win"
+	},
+	"keywords": [],
+	"author": "Rudhi Mediastara",
+	"license": "ISC",
+	"build": {
+		"appId": "com.electron.pingu",
+		"directories": {
+			"buildResources": "out",
+			"output": "dist"
+		},
+		"files": [
+			"resources/pingu.ico"
+		],
+		"win": {
+			"target": "portable",
+			"icon": "resources/pingu.ico"
+		}
+	},
+	"devDependencies": {
+		"@types/highland": "^2.12.3",
+		"@types/lodash": "^4.14.138",
+		"@types/node": "^12.7.3",
+		"@types/ramda": "^0.26.21",
+		"@types/react": "^16.9.2",
+		"@types/react-dom": "^16.9.0",
+		"@types/uniqid": "^4.1.3",
+		"electron": "^5.0.10",
+		"electron-builder": "^21.2.0",
+		"typescript": "^3.6.2"
+	},
+	"dependencies": {
+		"highland": "^2.13.5",
+		"lodash": "^4.17.15",
+		"ramda": "^0.26.1",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
+		"uniqid": "^5.0.3"
+	}
 }
