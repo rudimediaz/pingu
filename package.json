@@ -39,7 +39,7 @@
 	},
 	"dependencies": {
 		"highland": "^2.13.5",
-		"lodash": "^4.17.15",
+		"lodash": "^4.17.19",
 		"ramda": "^0.26.1",
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
